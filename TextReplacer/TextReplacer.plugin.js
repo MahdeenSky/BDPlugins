@@ -3,6 +3,7 @@
  * @author MahdeenSky
  * @version 1.0
  * @description Can replace text in messages using regex before sending them. By default, it fixes twitter and pixiv links.
+ * @source https://github.com/MahdeenSky/BDPlugins/blob/main/TextReplacer/TextReplacer.plugin.js
  */
 
 const BD = new BdApi("TextReplacer");
