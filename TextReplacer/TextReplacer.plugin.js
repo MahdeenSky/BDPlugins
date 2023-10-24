@@ -56,6 +56,7 @@ module.exports = meta => ({
                 const listItem = document.createElement("li");
                 listItem.style.padding = "5px";
                 listItem.style.listStyleType = "none";
+                listItem.style.color = "#fff";
     
                 const regexLabel = document.createElement("span");
                 regexLabel.style.fontWeight = "bold";
