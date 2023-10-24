@@ -57,6 +57,7 @@ module.exports = meta => ({
                 listItem.style.padding = "5px";
                 listItem.style.listStyleType = "none";
                 listItem.style.color = "#fff";
+                listItem.style.lineHeight = "1.6";
     
                 const regexLabel = document.createElement("span");
                 regexLabel.style.fontWeight = "bold";
@@ -122,6 +123,7 @@ module.exports = meta => ({
         addButton.style.padding = "10px";
         addButton.style.cursor = "pointer";
         addButton.style.marginTop = "10px";
+        addButton.style.marginLeft = "2%";
         addButton.addEventListener("click", () => {
             const newRegex = addRegexField.value;
             const newReplace = addReplaceField.value;
@@ -146,3 +148,4 @@ module.exports = meta => ({
     }
 
 });
+
