@@ -1,7 +1,7 @@
 /**
  * @name TextReplacer
  * @author MahdeenSky
- * @version 1.1
+ * @version 1.3
  * @description Can replace text in messages using regex before sending them. By default, it fixes twitter and pixiv links.
  * @source https://github.com/MahdeenSky/BDPlugins/blob/main/TextReplacer/TextReplacer.plugin.js
  */
