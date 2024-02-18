@@ -33,7 +33,6 @@ module.exports = meta => ({
     start() {
         BD.Patcher.before(MessageActions, "sendMessage", (_, args) => {
             const msg = args[1];
-            console.log(args)
             let definedRegex;
             for (let i = 0; i < getSettings().regexes.length; i++) {
                 definedRegex = getSettings().regexes[i]
@@ -78,9 +77,7 @@ module.exports = meta => ({
                 );
             });
         }
-    
-        console.log(...rebuildRegexList())
-    
+        
         return createElement('div', { id: 'TextReplacer-settings', style: { padding: '20px', border: '1px solid #ccc', borderRadius: '5px' } },
         createElement('ul', {}, ...rebuildRegexList()),
         createElement(Modals.TextInput, { 
