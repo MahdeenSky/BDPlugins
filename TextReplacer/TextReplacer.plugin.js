@@ -55,10 +55,10 @@ module.exports = meta => ({
     
         const [newRegex, setNewRegex] = useState('');
         const [newReplace, setNewReplace] = useState('');
-        const [regexes, setRegexes] = useState(getSettings().regexes); // Add this line
+        const [regexes, setRegexes] = useState(getSettings().regexes);
     
         function rebuildRegexList() {
-            return regexes.map((pair, index) => { // Change this line
+            return regexes.map((pair, index) => {
                 return createElement('div', { style: { display: 'flex', alignItems: 'center', marginBottom: '10px' } },
                     createElement('div', { style: { flex: 1, padding: '5px', color: '#fff', lineHeight: '1.6' } },
                         createElement('span', { style: { fontWeight: 'bold' } }, `Regex ${index + 1}: `),
@@ -69,9 +69,9 @@ module.exports = meta => ({
                     createElement(Modals.Button, {
                         style: { backgroundColor: '#ff0000', color: '#fff', border: 'none', padding: '5px', marginLeft: '10px', cursor: 'pointer' },
                         onClick: () => {
-                            const newRegexes = [...regexes]; // Change this line
+                            const newRegexes = [...regexes];
                             newRegexes.splice(index, 1);
-                            setRegexes(newRegexes); // Add this line
+                            setRegexes(newRegexes);
                             updateSettings({ regexes: newRegexes });
                         }
                     }, 'Delete')
@@ -101,9 +101,9 @@ module.exports = meta => ({
             style: { backgroundColor: '#0074d9', color: '#fff', border: 'none', padding: '10px', cursor: 'pointer', marginTop: '10px', marginLeft: '2%' },
             onClick: () => {
                 if (newRegex && newReplace) {
-                    const newRegexes = [...regexes]; // Change this line
+                    const newRegexes = [...regexes];
                     newRegexes.push({ regex: newRegex, replace: newReplace });
-                    setRegexes(newRegexes); // Add this line
+                    setRegexes(newRegexes);
                     updateSettings({ regexes: newRegexes });
                     setNewRegex('');
                     setNewReplace('');
