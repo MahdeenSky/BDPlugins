@@ -30,7 +30,7 @@ module.exports = meta => ({
     start() {
         // Load the saved settings
         let loadedSettings = BD.Data.load("settings");
-        if (typeof loadedSettings === 'object' && loadedSettings !== null) {
+        if (typeof loadedSettings === 'object' && loadedSettings !== null && !(loadedSettings instanceof Array)) {
             Object.assign(settings, loadedSettings);
         }
 
