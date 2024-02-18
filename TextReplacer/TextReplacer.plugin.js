@@ -15,14 +15,18 @@ const Modals = getModule(x=>x.ConfirmModal)
 
 const settings = {
     regexes: [
-        { regex: "//(x|twitter)\\.com", replace: "//fxtwitter.com" },
+        { regex: "example\\.com", replace: "replacement.com" },
         { regex: "pixiv\\.net", replace: "phixiv.net" }
     ]
 };
 
 function updateSettings(newSettings) {
     Object.assign(settings, newSettings);
-    BD.Data.save("TextReplacer", "settings", settings);
+    BdApi.Data.save("TextReplacer", "settings", settings);
+}
+
+function getSettings() {
+    return BdApi.Data.load("TextReplacer", "settings");
 }
 
 module.exports = meta => ({
@@ -31,8 +35,8 @@ module.exports = meta => ({
             const msg = args[1];
             console.log(args)
             let definedRegex;
-            for (let i = 0; i < settings.regexes.length; i++) {
-                definedRegex = settings.regexes[i]
+            for (let i = 0; i < getSettings().regexes.length; i++) {
+                definedRegex = getSettings().regexes[i]
                 msg.content = msg.content.replace(new RegExp(definedRegex.regex, "g"), definedRegex.replace);
             }
         });
@@ -53,7 +57,7 @@ module.exports = meta => ({
         const [newReplace, setNewReplace] = useState('');
     
         function rebuildRegexList() {
-            return settings.regexes.map((pair, index) => {
+            return getSettings().regexes.map((pair, index) => {
                 return createElement('div', { style: { display: 'flex', alignItems: 'center', marginBottom: '10px' } },
                     createElement('div', { style: { flex: 1, padding: '5px', color: '#fff', lineHeight: '1.6' } },
                         createElement('span', { style: { fontWeight: 'bold' } }, `Regex ${index + 1}: `),
@@ -73,6 +77,8 @@ module.exports = meta => ({
             });
         }
     
+        console.log(...rebuildRegexList())
+
         return createElement('div', { id: 'TextReplacer-settings', style: { padding: '20px', border: '1px solid #ccc', borderRadius: '5px' } },
         createElement('ul', {}, ...rebuildRegexList()),
         createElement(Modals.TextInput, { 
@@ -98,9 +104,11 @@ module.exports = meta => ({
                     updateSettings({ regexes: newRegexes });
                     setNewRegex('');
                     setNewReplace('');
+                    rebuildRegexList();
                 }
             }
         }, 'Add Regex')
     );
     }
+
 });
