@@ -1,7 +1,7 @@
 /**
  * @name TextReplacer
  * @author MahdeenSky
- * @version 1.0
+ * @version 1.1
  * @description Can replace text in messages using regex before sending them. By default, it fixes twitter and pixiv links.
  * @source https://github.com/MahdeenSky/BDPlugins/blob/main/TextReplacer/TextReplacer.plugin.js
  */
@@ -15,7 +15,7 @@ const MessageActions = getModule(m => MessageActionsFilter(m));
 // Define the initial settings object with default values
 const settings = {
     regexes: [
-        { regex: "//(x|twitter)\\.com", replace: "//vxtwitter.com" },
+        { regex: "//(x|twitter)\\.com", replace: "//fxtwitter.com" },
         { regex: "pixiv\\.net", replace: "phixiv.net" }
     ]
 };
@@ -30,9 +30,11 @@ module.exports = meta => ({
     start() {
         BD.Patcher.before(MessageActions, "sendMessage", (_, args) => {
             const msg = args[1];
-            settings.regexes.forEach(({ regex, replace }) => {
-                msg.content = msg.content.replace(new RegExp(regex, "g"), replace);
-            });
+            let definedRegex;
+            for (let i = 0; i < settings.regexes.length; i++) {
+                definedRegex = settings.regexes[i]
+                msg.content = msg.content.replace(new RegExp(definedRegex.regex, "g"), definedRegex.replace);
+            }
         });
     },
     stop() {
@@ -148,4 +150,3 @@ module.exports = meta => ({
     }
 
 });
-
