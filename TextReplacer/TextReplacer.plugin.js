@@ -23,7 +23,7 @@ const settings = {
 // Function to update and save settings
 function updateSettings(newSettings) {
     Object.assign(settings, newSettings);
-    BD.Data.save("TextReplacer", "settings", settings);
+    BD.Data.save("settings", settings);
 }
 
 module.exports = meta => ({
