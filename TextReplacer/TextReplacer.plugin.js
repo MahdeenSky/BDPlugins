@@ -55,9 +55,10 @@ module.exports = meta => ({
     
         const [newRegex, setNewRegex] = useState('');
         const [newReplace, setNewReplace] = useState('');
+        const [regexes, setRegexes] = useState(getSettings().regexes); // Add this line
     
         function rebuildRegexList() {
-            return getSettings().regexes.map((pair, index) => {
+            return regexes.map((pair, index) => { // Change this line
                 return createElement('div', { style: { display: 'flex', alignItems: 'center', marginBottom: '10px' } },
                     createElement('div', { style: { flex: 1, padding: '5px', color: '#fff', lineHeight: '1.6' } },
                         createElement('span', { style: { fontWeight: 'bold' } }, `Regex ${index + 1}: `),
@@ -68,8 +69,9 @@ module.exports = meta => ({
                     createElement(Modals.Button, {
                         style: { backgroundColor: '#ff0000', color: '#fff', border: 'none', padding: '5px', marginLeft: '10px', cursor: 'pointer' },
                         onClick: () => {
-                            const newRegexes = [...settings.regexes];
+                            const newRegexes = [...regexes]; // Change this line
                             newRegexes.splice(index, 1);
+                            setRegexes(newRegexes); // Add this line
                             updateSettings({ regexes: newRegexes });
                         }
                     }, 'Delete')
@@ -78,7 +80,7 @@ module.exports = meta => ({
         }
     
         console.log(...rebuildRegexList())
-
+    
         return createElement('div', { id: 'TextReplacer-settings', style: { padding: '20px', border: '1px solid #ccc', borderRadius: '5px' } },
         createElement('ul', {}, ...rebuildRegexList()),
         createElement(Modals.TextInput, { 
@@ -99,12 +101,12 @@ module.exports = meta => ({
             style: { backgroundColor: '#0074d9', color: '#fff', border: 'none', padding: '10px', cursor: 'pointer', marginTop: '10px', marginLeft: '2%' },
             onClick: () => {
                 if (newRegex && newReplace) {
-                    const newRegexes = [...settings.regexes];
+                    const newRegexes = [...regexes]; // Change this line
                     newRegexes.push({ regex: newRegex, replace: newReplace });
+                    setRegexes(newRegexes); // Add this line
                     updateSettings({ regexes: newRegexes });
                     setNewRegex('');
                     setNewReplace('');
-                    rebuildRegexList();
                 }
             }
         }, 'Add Regex')
