@@ -15,7 +15,7 @@ const Modals = getModule(x=>x.ConfirmModal)
 
 const settings = {
     regexes: [
-        { regex: "example\\.com", replace: "replacement.com" },
+        { regex: "//(x|twitter)\\.com", replace: "//fxtwitter.com" },
         { regex: "pixiv\\.net", replace: "phixiv.net" }
     ]
 };
