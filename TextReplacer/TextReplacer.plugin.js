@@ -28,6 +28,12 @@ function updateSettings(newSettings) {
 
 module.exports = meta => ({
     start() {
+        // Load the saved settings
+        let loadedSettings = BD.Data.load("settings");
+        if (loadedSettings != undefined) {
+            Object.assign(settings, loadedSettings);
+        }
+
         BD.Patcher.before(MessageActions, "sendMessage", (_, args) => {
             const msg = args[1];
             let definedRegex;
