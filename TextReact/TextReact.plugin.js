@@ -3,7 +3,7 @@
  * @version 1.0
  * @description Adds a 'Text React' option to the context menu of messages, allowing you to add text as reactions.
  * @author MahdeenSky
- * @source https://github.com/YourGitHub/TextReact
+ * @source https://github.com/MahdeenSky/BDPlugins/blob/main/TextReact/TextReact.plugin.js
  */
 
 module.exports = (() => {
@@ -16,7 +16,7 @@ module.exports = (() => {
           }],
           version: "1.0",
           description: "Adds a 'Text React' option to the context menu of messages, allowing you to add text as reactions.",
-          github_raw: "https://raw.githubusercontent.com/YourGitHub/TextReact/main/TextReact.plugin.js",
+          github_raw: "https://github.com/MahdeenSky/BDPlugins/blob/main/TextReact/TextReact.plugin.js",
       },
   };
 
