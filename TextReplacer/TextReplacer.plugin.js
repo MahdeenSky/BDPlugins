@@ -31,6 +31,10 @@ function getSettings() {
 
 module.exports = (meta) => ({
   start() {
+    if (!getSettings()) {
+      updateSettings(settings);
+    }
+
     BD.Patcher.before(MessageActions, "sendMessage", (_, args) => {
       const msg = args[1];
       let definedRegex;
@@ -61,9 +65,6 @@ module.exports = (meta) => ({
     const [newRegex, setNewRegex] = useState("");
     const [newReplace, setNewReplace] = useState("");
 
-    if (!getSettings()) {
-      updateSettings(settings);
-    }
     const [regexes, setRegexes] = useState(getSettings().regexes);
 
     function rebuildRegexList() {
