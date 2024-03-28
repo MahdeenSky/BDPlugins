@@ -45,6 +45,11 @@ module.exports = (meta) => ({
           definedRegex.replace,
         );
       }
+
+      // if the message content is empty, replace it with a zero width space so it doesn't fail to send
+      if (msg.content.trim() === "") {
+        msg.content = "‎";
+      }
     });
   },
   stop() {
